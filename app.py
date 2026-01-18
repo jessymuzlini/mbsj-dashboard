@@ -172,14 +172,14 @@ class DogDetector(VideoTransformerBase):
         
         if model:
             # Run inference
-            results = model(img, verbose=False, conf=0.5)
+            results = model(img, verbose=False, conf=0.3)
             # Annotate
             img = results[0].plot()
             
         return av.VideoFrame.from_ndarray(img, format="bgr24")
 
 with col_main:
-    st.markdown("### 🔴 Live Feed: Jalan SK 6/1")
+    st.markdown("<h3 style='color: #0f172a;'>🔴 Live Feed: Jalan SK 6/1</h3>", unsafe_allow_html=True)
     st.write("Click 'START' to use your camera. (Allow permissions)")
     
     webrtc_streamer(
@@ -218,7 +218,7 @@ with col_right:
     """, unsafe_allow_html=True)
     
     # Recent Logs
-    st.markdown("### Recent Logs")
+    st.markdown("<h3 style='color: #0f172a;'>Recent Logs</h3>", unsafe_allow_html=True)
     
     logs = [
         {"loc": "Pasar Borong", "time": "10 mins ago", "type": "STRAY", "color": "#fee2e2", "text": "#ef4444"},
@@ -253,7 +253,7 @@ with col_right:
 
 # --- Heatmap (Bottom) ---
 st.markdown("<br>", unsafe_allow_html=True)
-st.markdown("### Zone Map - Seri Kembangan")
+st.markdown("<h3 style='color: #0f172a;'>Zone Map - Seri Kembangan</h3>", unsafe_allow_html=True)
 
 # Create Map
 m = folium.Map(location=[3.032, 101.715], zoom_start=14, tiles="CartoDB dark_matter")
@@ -275,4 +275,4 @@ add_circle([3.028, 101.710], '#eab308', 5, 250) # Med
 add_circle([3.030, 101.722], '#ef4444', 3, 200) 
 add_circle([3.040, 101.705], '#06b6d4', 2, 150) # Low
 
-st_folium(m, width="100%", height=400)
+st_folium(m, width="100%", height=400, returned_objects=[])
